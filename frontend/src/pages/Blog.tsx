@@ -2,14 +2,6 @@ import { Loader } from "@/Components/Loader";
 import { useBlog } from "@/hooks";
 import { Link, useParams } from "react-router-dom";
 
-interface Blog {
-  title: string;
-  content: string;
-  author: {
-    name: string;
-  };
-}
-
 export const Blog = () => {
   const { id } = useParams<{ id: string }>();
   const { blog, error, isLoading } = useBlog({ id: id ?? "" });

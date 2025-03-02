@@ -2,10 +2,19 @@ import { BACKEND_URL } from "@/config";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
+interface Blog {
+  title: string;
+  content: string;
+  author: {
+    name: string;
+  };
+  id: string;
+}
+
 export const useBlogs = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [blogs, setBlogs] = useState([]);
-  const [error, setError] = useState();
+  const [blogs, setBlogs] = useState<Blog[] | null>(null);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     axios
@@ -17,8 +26,8 @@ export const useBlogs = () => {
       .then((res) => {
         setBlogs(res.data.records);
       })
-      .catch((e) => {
-        setError("Something Went Wrong", e.message);
+      .catch(() => {
+        setError("Something Went Wrong");
       })
       .finally(() => {
         setIsLoading(false);
@@ -33,8 +42,8 @@ export const useBlogs = () => {
 };
 export const useBlog = ({ id }: { id: string }) => {
   const [isLoading, setIsLoading] = useState(true);
-  const [blog, setBlog] = useState({});
-  const [error, setError] = useState();
+  const [blog, setBlog] = useState<Blog | null>(null);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     axios
@@ -46,8 +55,8 @@ export const useBlog = ({ id }: { id: string }) => {
       .then((res) => {
         setBlog(res.data.record);
       })
-      .catch((e) => {
-        setError("Something Went Wrong", e.message);
+      .catch(() => {
+        setError("Something Went Wrong");
       })
       .finally(() => {
         setIsLoading(false);

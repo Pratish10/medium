@@ -1,11 +1,11 @@
 import { Link, useNavigate } from "react-router-dom";
-import { Input } from "./input";
-import { Button } from "./button";
-import { Label } from "./label";
+import { Button } from "@/Components/button";
+import { Label } from "@/Components/label";
 import { useState } from "react";
 import { SignUpTypes, SignInTypes } from "@paaro/medium-common";
 import axios from "axios";
 import { BACKEND_URL } from "@/config";
+import { Input } from "@/Components/input";
 
 type postInputType = SignInTypes | SignUpTypes;
 
@@ -33,8 +33,8 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
       const token = response.data?.jwt;
       localStorage.setItem("token", token);
       navigate("/blogs");
-    } catch (error) {
-      alert(error.message);
+    } catch {
+      alert("Something went wrong");
     }
   };
 

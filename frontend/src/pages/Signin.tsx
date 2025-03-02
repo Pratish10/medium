@@ -1,5 +1,5 @@
-import { Auth } from "@/components/auth";
-import { Quote } from "@/components/quote";
+import { Auth } from "@/Components/Auth";
+import { Quote } from "@/Components/Quote";
 
 export const Signin = () => {
   return (

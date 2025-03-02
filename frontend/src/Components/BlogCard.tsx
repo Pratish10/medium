@@ -1,33 +1,20 @@
 import { Link } from "react-router-dom";
 
 type BlogCardProps = {
+  title: string;
+  content: string;
   author: {
     name: string;
   };
-  title: string;
-  content: string;
-  publishedDate: string;
   id: string;
 };
 
-export const BlogCard = ({
-  author,
-  content,
-  publishedDate,
-  title,
-  id,
-}: BlogCardProps) => {
+export const BlogCard = ({ author, content, title, id }: BlogCardProps) => {
   return (
     <article className="mb-8 border-b border-gray-200 pb-8">
       <div className="mb-2 flex items-center text-sm">
-        <img
-          src={`https://ui-avatars.com/api/?name=${author.name}&background=random`}
-          alt={author.name}
-          className="mr-2 h-6 w-6 rounded-full"
-        />
         <span className="font-medium text-gray-700">{author.name}</span>
         <span className="mx-1 text-gray-500">·</span>
-        <time className="text-gray-500">{publishedDate}</time>
       </div>
       <Link to={`/blog/${id}`} className="group">
         <h2 className="mb-2 text-xl font-bold leading-tight text-gray-900 group-hover:underline">
